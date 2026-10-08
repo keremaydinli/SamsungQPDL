@@ -1,0 +1,123 @@
+*PPD-Adobe: "4.3"
+*%
+*% Samsung ML-1670 / ML-1675 - open QPDL driver for macOS
+*% Filter: rastertoqpdl (QPDL v5, JBIG algorithm 0x15)
+*%
+*FormatVersion: "4.3"
+*FileVersion: "0.1.0"
+*LanguageVersion: English
+*LanguageEncoding: ISOLatin1
+*PCFileName: "ML1675Q.PPD"
+*Manufacturer: "Samsung"
+*Product: "(ML-1670 Series)"
+*Product: "(ML-1675)"
+*ModelName: "Samsung ML-1670 Series QPDL"
+*ShortNickName: "Samsung ML-1670 QPDL"
+*NickName: "Samsung ML-1670/1675 Series (open QPDL driver)"
+*1284DeviceID: "MFG:Samsung;CMD:GDI,FWV,EXT;MDL:ML-1670 Series;CLS:PRINTER;"
+*PSVersion: "(3010.000) 0"
+*LanguageLevel: "3"
+*ColorDevice: False
+*DefaultColorSpace: Gray
+*FileSystem: False
+*Throughput: "16"
+*LandscapeOrientation: Plus90
+*TTRasterizer: Type42
+*cupsVersion: 2.2
+*cupsManualCopies: True
+*cupsModelNumber: 0
+*cupsFilter: "application/vnd.cups-raster 100 /Library/Printers/SamsungQPDL/Filters/rastertoqpdl"
+*HWMargins: 12 12 12 12
+
+*OpenUI *Resolution/Resolution: PickOne
+*OrderDependency: 10 AnySetup *Resolution
+*DefaultResolution: 600dpi
+*Resolution 600dpi/600 DPI: "<</HWResolution[600 600]/cupsColorSpace 3/cupsColorOrder 0/cupsBitsPerColor 8>>setpagedevice"
+*CloseUI: *Resolution
+
+*OpenUI *PageSize/Paper Size: PickOne
+*OrderDependency: 20 AnySetup *PageSize
+*DefaultPageSize: A4
+*PageSize A4/A4: "<</PageSize[595 842]/ImagingBBox null>>setpagedevice"
+*PageSize Letter/US Letter: "<</PageSize[612 792]/ImagingBBox null>>setpagedevice"
+*PageSize Legal/US Legal: "<</PageSize[612 1008]/ImagingBBox null>>setpagedevice"
+*PageSize Executive/Executive: "<</PageSize[522 756]/ImagingBBox null>>setpagedevice"
+*PageSize A5/A5: "<</PageSize[420 595]/ImagingBBox null>>setpagedevice"
+*PageSize B5/JIS B5: "<</PageSize[516 729]/ImagingBBox null>>setpagedevice"
+*PageSize Env10/Envelope #10: "<</PageSize[297 684]/ImagingBBox null>>setpagedevice"
+*PageSize EnvDL/Envelope DL: "<</PageSize[312 624]/ImagingBBox null>>setpagedevice"
+*PageSize EnvC5/Envelope C5: "<</PageSize[459 649]/ImagingBBox null>>setpagedevice"
+*PageSize EnvMonarch/Envelope Monarch: "<</PageSize[279 540]/ImagingBBox null>>setpagedevice"
+*CloseUI: *PageSize
+
+*OpenUI *PageRegion: PickOne
+*OrderDependency: 20 AnySetup *PageRegion
+*DefaultPageRegion: A4
+*PageRegion A4/A4: "<</PageSize[595 842]/ImagingBBox null>>setpagedevice"
+*PageRegion Letter/US Letter: "<</PageSize[612 792]/ImagingBBox null>>setpagedevice"
+*PageRegion Legal/US Legal: "<</PageSize[612 1008]/ImagingBBox null>>setpagedevice"
+*PageRegion Executive/Executive: "<</PageSize[522 756]/ImagingBBox null>>setpagedevice"
+*PageRegion A5/A5: "<</PageSize[420 595]/ImagingBBox null>>setpagedevice"
+*PageRegion B5/JIS B5: "<</PageSize[516 729]/ImagingBBox null>>setpagedevice"
+*PageRegion Env10/Envelope #10: "<</PageSize[297 684]/ImagingBBox null>>setpagedevice"
+*PageRegion EnvDL/Envelope DL: "<</PageSize[312 624]/ImagingBBox null>>setpagedevice"
+*PageRegion EnvC5/Envelope C5: "<</PageSize[459 649]/ImagingBBox null>>setpagedevice"
+*PageRegion EnvMonarch/Envelope Monarch: "<</PageSize[279 540]/ImagingBBox null>>setpagedevice"
+*CloseUI: *PageRegion
+
+*DefaultImageableArea: A4
+*ImageableArea A4/A4: "12 12 583 830"
+*ImageableArea Letter/US Letter: "12 12 600 780"
+*ImageableArea Legal/US Legal: "12 12 600 996"
+*ImageableArea Executive/Executive: "12 12 510 744"
+*ImageableArea A5/A5: "12 12 408 583"
+*ImageableArea B5/JIS B5: "12 12 504 717"
+*ImageableArea Env10/Envelope #10: "12 12 285 672"
+*ImageableArea EnvDL/Envelope DL: "12 12 300 612"
+*ImageableArea EnvC5/Envelope C5: "12 12 447 637"
+*ImageableArea EnvMonarch/Envelope Monarch: "12 12 267 528"
+
+*DefaultPaperDimension: A4
+*PaperDimension A4/A4: "595 842"
+*PaperDimension Letter/US Letter: "612 792"
+*PaperDimension Legal/US Legal: "612 1008"
+*PaperDimension Executive/Executive: "522 756"
+*PaperDimension A5/A5: "420 595"
+*PaperDimension B5/JIS B5: "516 729"
+*PaperDimension Env10/Envelope #10: "297 684"
+*PaperDimension EnvDL/Envelope DL: "312 624"
+*PaperDimension EnvC5/Envelope C5: "459 649"
+*PaperDimension EnvMonarch/Envelope Monarch: "279 540"
+
+*OpenUI *InputSlot/Paper Source: PickOne
+*OrderDependency: 30 AnySetup *InputSlot
+*DefaultInputSlot: Auto
+*InputSlot Auto/Automatic: "<</MediaPosition 1>>setpagedevice"
+*InputSlot Manual/Manual Feeder: "<</MediaPosition 2>>setpagedevice"
+*CloseUI: *InputSlot
+
+*OpenUI *EconoMode/Toner Save: Boolean
+*OrderDependency: 40 AnySetup *EconoMode
+*DefaultEconoMode: False
+*EconoMode False/Off: "<</cupsInteger0 0>>setpagedevice"
+*EconoMode True/On: "<</cupsInteger0 1>>setpagedevice"
+*CloseUI: *EconoMode
+
+*OpenUI *TonerDensity/Toner Density: PickOne
+*OrderDependency: 40 AnySetup *TonerDensity
+*DefaultTonerDensity: 3
+*TonerDensity 1/Lightest: "<</cupsInteger1 1>>setpagedevice"
+*TonerDensity 2/Light: "<</cupsInteger1 2>>setpagedevice"
+*TonerDensity 3/Normal: "<</cupsInteger1 3>>setpagedevice"
+*TonerDensity 4/Dark: "<</cupsInteger1 4>>setpagedevice"
+*TonerDensity 5/Darkest: "<</cupsInteger1 5>>setpagedevice"
+*CloseUI: *TonerDensity
+
+*OpenUI *Halftone/Halftone: PickOne
+*OrderDependency: 40 AnySetup *Halftone
+*DefaultHalftone: Dither
+*Halftone Dither/Photo (dithered grays): "<</cupsInteger2 0>>setpagedevice"
+*Halftone Threshold/Text (pure black and white): "<</cupsInteger2 1>>setpagedevice"
+*CloseUI: *Halftone
+
+*% End of Samsung-ML-1675-QPDL.ppd

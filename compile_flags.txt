@@ -1,0 +1,3 @@
+-Ithird_party/jbigkit
+-Wall
+-Wextra
