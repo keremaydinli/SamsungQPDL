@@ -27,6 +27,9 @@ Requirements: macOS 11 Big Sur or newer, Apple Silicon or Intel.
 
 ## Install
 
+New to this? The [walkthrough](docs/WALKTHROUGH.md) follows a user from
+this page to their first printed page, and through uninstalling.
+
 ### Option A: installer package (easiest)
 
 > [!IMPORTANT]
