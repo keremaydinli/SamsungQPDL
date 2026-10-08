@@ -29,14 +29,22 @@ Requirements: macOS 11 Big Sur or newer, Apple Silicon or Intel.
 
 ### Option A: installer package (easiest)
 
+> [!IMPORTANT]
+> macOS will block the installer the first time, with a message like
+> **"Apple could not verify SamsungQPDL-x.y.z.pkg is free of malware"**.
+> This happens because the package isn't notarized by Apple (that needs a
+> paid developer account), not because something is wrong with it.
+> **Click Done, not Move to Trash**, then follow step 3 below.
+
 1. Download `SamsungQPDL-x.y.z.pkg` from the
    [Releases](../../releases) page.
-2. Double-click it. macOS will say it can't verify the developer, because
-   the package isn't notarized by Apple. Click **Done**, then open
-   **System Settings → Privacy & Security**, scroll down and click
-   **Open Anyway** next to the SamsungQPDL message.
-3. Follow the installer.
-4. [Add the printer](#add-the-printer).
+2. Double-click it. When macOS blocks it, click **Done**.
+3. Open **System Settings → Privacy & Security**, scroll down to the message
+   about SamsungQPDL and click **Open Anyway**. Confirm with your password
+   or Touch ID.
+4. Follow the installer: **Continue → Install**, enter your password,
+   then **Close**.
+5. [Add the printer](#add-the-printer).
 
 ### Option B: build from source
 
@@ -60,14 +68,16 @@ sudo make setup-queue
 ## Add the printer
 
 1. Connect the printer over USB and switch it on.
-2. Open **System Settings → Printers & Scanners → Add Printer, Scanner or Fax**.
-3. Select **Samsung ML-1670 Series** (USB).
-4. Under **Use**, choose **Select Software…** and pick
-   **Samsung ML-1670/1675 Series (open QPDL driver)**.
-5. Click **Add** and print a test page.
-
-If you already added the printer with another driver, remove it first
-(select it, click **−**), then add it again as above.
+2. **If you already added this printer before** (for example with HP's
+   Samsung driver, which prints "INTERNAL ERROR" pages), remove it first:
+   **System Settings → Printers & Scanners**, select the printer, click
+   **−** and confirm.
+3. Click **Add Printer, Scanner or Fax…** and select
+   **Samsung ML-1670 Series** (USB). The ML-1675 reports itself under
+   that name too.
+4. Under **Use**, choose **Select Software…**, type **QPDL** in the filter
+   box and pick **Samsung ML-1670/1675 Series (open QPDL driver)**.
+5. Click **Add**, then print any document to test.
 
 ## Print options
 
@@ -83,14 +93,33 @@ For documents with mostly text, **Halftone → Text** gives the crispest letters
 
 ## Uninstall
 
+The uninstaller removes the driver files and any printers set up with this
+driver. Nothing else is left behind.
+
+**If you used the installer package:**
+
+1. In Finder, choose **Go → Go to Folder…** (⇧⌘G), type
+   `/Library/Printers/SamsungQPDL` and press Return.
+2. Double-click **Uninstall-SamsungQPDL.command**. A Terminal window opens,
+   lists what will be removed and asks you to confirm.
+3. Type `y`, press Return and enter your Mac password (it stays invisible
+   while you type).
+
+The same script is also attached to every release as
+`Uninstall-SamsungQPDL.zip`. Since it's downloaded, macOS blocks it the
+first time just like the installer: use **Privacy & Security → Open Anyway**.
+
+**From a source checkout:** `bash scripts/Uninstall-SamsungQPDL.command`
+
+**By hand,** in Terminal:
+
 ```sh
 sudo rm -rf /Library/Printers/SamsungQPDL
 sudo rm -f /Library/Printers/PPDs/Contents/Resources/Samsung-ML-1675-QPDL.ppd.gz
 sudo pkgutil --forget io.github.keremaydinli.samsungqpdl
 ```
 
-Or, from a source checkout: `sudo make uninstall`. Then remove the printer
-in System Settings.
+then remove the printer in **System Settings → Printers & Scanners**.
 
 ## Troubleshooting
 
@@ -114,6 +143,7 @@ App → PDF → macOS renderer (cgpdftoraster) → 8-bit gray raster
 - `src/rastertoqpdl.c`: the CUPS filter
 - `ppd/Samsung-ML-1675-QPDL.ppd`: the printer description macOS reads
 - `src/testpage.c`: standalone test page generator
+- `scripts/Uninstall-SamsungQPDL.command`: the uninstaller
 
 ## Credits
 

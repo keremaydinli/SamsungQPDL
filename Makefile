@@ -1,4 +1,4 @@
-VERSION ?= 0.1.0
+VERSION ?= 0.2.0
 
 CC       = clang
 ARCHS    = -arch arm64 -arch x86_64
@@ -13,6 +13,7 @@ PPDDIR   = /Library/Printers/PPDs/Contents/Resources
 PPD      = Samsung-ML-1675-QPDL.ppd
 QUEUE   ?= Samsung_ML_1670_Series
 PKG      = build/SamsungQPDL-$(VERSION).pkg
+UNINST   = Uninstall-SamsungQPDL.command
 
 all: rastertoqpdl testpage
 
@@ -29,6 +30,7 @@ testpage: src/testpage.c $(QPDL_DEP)
 install: rastertoqpdl
 	install -d -o root -g wheel -m 755 $(PREFIX)/Filters
 	install -o root -g wheel -m 755 rastertoqpdl $(PREFIX)/Filters/rastertoqpdl
+	install -o root -g wheel -m 755 scripts/$(UNINST) $(PREFIX)/$(UNINST)
 	gzip -9 -c ppd/$(PPD) > $(PPDDIR)/$(PPD).gz
 	chown root:wheel $(PPDDIR)/$(PPD).gz
 	chmod 644 $(PPDDIR)/$(PPD).gz
@@ -53,12 +55,14 @@ pkg: rastertoqpdl
 	rm -rf build/root
 	install -d build/root$(PREFIX)/Filters build/root$(PPDDIR)
 	install -m 755 rastertoqpdl build/root$(PREFIX)/Filters/rastertoqpdl
+	install -m 755 scripts/$(UNINST) build/root$(PREFIX)/$(UNINST)
 	gzip -9 -c ppd/$(PPD) > build/root$(PPDDIR)/$(PPD).gz
 	chmod 644 build/root$(PPDDIR)/$(PPD).gz
 	xattr -cr build/root
 	COPYFILE_DISABLE=1 pkgbuild --root build/root --install-location / \
 		--identifier io.github.keremaydinli.samsungqpdl \
 		--version $(VERSION) --ownership recommended $(PKG)
+	cd scripts && zip -q ../build/Uninstall-SamsungQPDL.zip $(UNINST)
 
 clean:
 	rm -rf rastertoqpdl testpage test.qpdl build

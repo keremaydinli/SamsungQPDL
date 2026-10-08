@@ -32,7 +32,9 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: SamsungQPDL-${{ env.VERSION }}
-          path: build/*.pkg
+          path: |
+            build/*.pkg
+            build/*.zip
 
       - name: Publish release
         if: startsWith(github.ref, 'refs/tags/v')
@@ -41,4 +43,4 @@ jobs:
         run: |
           gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1 ||
             gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --generate-notes
-          gh release upload "$GITHUB_REF_NAME" build/*.pkg --clobber
+          gh release upload "$GITHUB_REF_NAME" build/*.pkg build/*.zip --clobber
